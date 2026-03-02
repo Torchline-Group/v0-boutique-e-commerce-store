@@ -14,7 +14,7 @@ const testimonials = [
   {
     name: "Jessica T.",
     location: "Mexico City, MX",
-    text: "Alma Sol isn't just a store — it's a movement. The clothes are stunning, sustainable, and every interaction feels personal. Shawna truly cares about her customers and the planet.",
+    text: "Alma Sol isn't just a store -- it's a movement. The clothes are stunning, sustainable, and every interaction feels personal. Shawna truly cares about her customers and the planet.",
     rating: 5,
   },
   {

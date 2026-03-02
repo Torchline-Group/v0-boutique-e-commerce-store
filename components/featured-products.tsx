@@ -8,43 +8,43 @@ import { useState } from "react"
 const products = [
   {
     id: 1,
-    name: "Breezy Cotton Blouse",
-    price: 89,
+    name: "Satin Camisole Top",
+    price: 79,
     image: "/images/product-1.jpg",
     tag: "New Arrival",
   },
   {
     id: 2,
-    name: "Terracotta Linen Skirt",
-    price: 112,
+    name: "Fitted Midi Dress",
+    price: 145,
     image: "/images/product-2.jpg",
     tag: "Bestseller",
   },
   {
     id: 3,
-    name: "Olive Silk Wrap Dress",
-    price: 165,
+    name: "Rose Silk Wrap Blouse",
+    price: 112,
     image: "/images/product-3.jpg",
     tag: "Limited Edition",
   },
   {
     id: 4,
-    name: "Coral Cotton Blazer",
-    price: 145,
+    name: "Structured Cream Blazer",
+    price: 168,
     image: "/images/product-4.jpg",
     tag: "New Arrival",
   },
   {
     id: 5,
-    name: "Wide-Leg Linen Pants",
-    price: 98,
+    name: "Wide-Leg Emerald Trousers",
+    price: 118,
     image: "/images/product-5.jpg",
     tag: null,
   },
   {
     id: 6,
-    name: "Burgundy Knit Sweater",
-    price: 125,
+    name: "Off-Shoulder Satin Top",
+    price: 95,
     image: "/images/product-6.jpg",
     tag: "Shawna's Pick",
   },
@@ -60,7 +60,7 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-secondary">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-blush">
         <Image
           src={product.image}
           alt={product.name}

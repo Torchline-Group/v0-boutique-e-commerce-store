@@ -4,56 +4,56 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Warm cream background */
-  --background: oklch(0.96 0.01 80);
-  --foreground: oklch(0.25 0.02 50);
+  /* Clean warm white background */
+  --background: oklch(0.985 0.003 340);
+  --foreground: oklch(0.20 0.01 280);
 
-  /* Card: soft warm white */
-  --card: oklch(0.98 0.008 80);
-  --card-foreground: oklch(0.25 0.02 50);
+  /* Card: pure white */
+  --card: oklch(1.0 0 0);
+  --card-foreground: oklch(0.20 0.01 280);
 
-  --popover: oklch(0.98 0.008 80);
-  --popover-foreground: oklch(0.25 0.02 50);
+  --popover: oklch(1.0 0 0);
+  --popover-foreground: oklch(0.20 0.01 280);
 
-  /* Primary: rich terracotta */
-  --primary: oklch(0.55 0.14 35);
-  --primary-foreground: oklch(0.98 0.005 80);
+  /* Primary: vibrant rose */
+  --primary: oklch(0.60 0.18 350);
+  --primary-foreground: oklch(0.99 0.002 340);
 
-  /* Secondary: warm sand */
-  --secondary: oklch(0.92 0.02 75);
-  --secondary-foreground: oklch(0.30 0.03 50);
+  /* Secondary: soft blush pink */
+  --secondary: oklch(0.95 0.02 340);
+  --secondary-foreground: oklch(0.25 0.02 280);
 
-  /* Muted: light warm beige */
-  --muted: oklch(0.93 0.015 80);
-  --muted-foreground: oklch(0.50 0.02 50);
+  /* Muted: light lavender-grey */
+  --muted: oklch(0.95 0.01 300);
+  --muted-foreground: oklch(0.50 0.01 280);
 
-  /* Accent: warm coral / sunset */
-  --accent: oklch(0.70 0.15 45);
-  --accent-foreground: oklch(0.98 0.005 80);
+  /* Accent: warm fuchsia-coral */
+  --accent: oklch(0.65 0.20 10);
+  --accent-foreground: oklch(0.99 0.002 340);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
 
-  --border: oklch(0.88 0.02 75);
-  --input: oklch(0.90 0.015 75);
-  --ring: oklch(0.55 0.14 35);
+  --border: oklch(0.92 0.01 340);
+  --input: oklch(0.94 0.008 340);
+  --ring: oklch(0.60 0.18 350);
 
-  --chart-1: oklch(0.55 0.14 35);
-  --chart-2: oklch(0.70 0.15 45);
-  --chart-3: oklch(0.45 0.08 160);
-  --chart-4: oklch(0.75 0.10 80);
-  --chart-5: oklch(0.65 0.12 25);
+  --chart-1: oklch(0.60 0.18 350);
+  --chart-2: oklch(0.65 0.20 10);
+  --chart-3: oklch(0.55 0.10 280);
+  --chart-4: oklch(0.75 0.12 340);
+  --chart-5: oklch(0.70 0.15 330);
 
   --radius: 0.5rem;
 
-  --sidebar: oklch(0.95 0.01 80);
-  --sidebar-foreground: oklch(0.25 0.02 50);
-  --sidebar-primary: oklch(0.55 0.14 35);
-  --sidebar-primary-foreground: oklch(0.98 0.005 80);
-  --sidebar-accent: oklch(0.92 0.02 75);
-  --sidebar-accent-foreground: oklch(0.30 0.03 50);
-  --sidebar-border: oklch(0.88 0.02 75);
-  --sidebar-ring: oklch(0.55 0.14 35);
+  --sidebar: oklch(0.98 0.005 340);
+  --sidebar-foreground: oklch(0.20 0.01 280);
+  --sidebar-primary: oklch(0.60 0.18 350);
+  --sidebar-primary-foreground: oklch(0.99 0.002 340);
+  --sidebar-accent: oklch(0.95 0.02 340);
+  --sidebar-accent-foreground: oklch(0.25 0.02 280);
+  --sidebar-border: oklch(0.92 0.01 340);
+  --sidebar-ring: oklch(0.60 0.18 350);
 }
 
 @theme inline {
@@ -98,13 +98,14 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Custom brand colors */
-  --color-terracotta: oklch(0.55 0.14 35);
-  --color-terracotta-light: oklch(0.70 0.10 35);
-  --color-coral: oklch(0.70 0.15 45);
-  --color-sand: oklch(0.92 0.02 75);
-  --color-cream: oklch(0.96 0.01 80);
-  --color-warm-brown: oklch(0.35 0.05 50);
-  --color-gold: oklch(0.75 0.12 85);
+  --color-rose: oklch(0.60 0.18 350);
+  --color-rose-light: oklch(0.78 0.10 350);
+  --color-fuchsia: oklch(0.65 0.20 10);
+  --color-blush: oklch(0.95 0.02 340);
+  --color-soft-white: oklch(0.985 0.003 340);
+  --color-charcoal: oklch(0.20 0.01 280);
+  --color-plum: oklch(0.25 0.05 320);
+  --color-gold: oklch(0.80 0.10 90);
 }
 
 @layer base {

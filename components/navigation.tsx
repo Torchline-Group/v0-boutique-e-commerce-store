@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { Menu, X, ShoppingBag, Search, Heart } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Menu, ShoppingBag, Search, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
@@ -16,11 +16,11 @@ const navLinks = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setIsScrolled(window.scrollY > 20)
-    })
-  }
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <header
@@ -38,7 +38,7 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden text-foreground hover:bg-secondary"
+                className={`lg:hidden ${isScrolled ? "text-foreground" : "text-soft-white"} hover:bg-soft-white/10`}
               >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Open menu</span>
@@ -68,7 +68,11 @@ export function Navigation() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium tracking-wide uppercase text-foreground hover:text-primary transition-colors"
+                className={`text-sm font-medium tracking-wide uppercase transition-colors ${
+                  isScrolled
+                    ? "text-foreground hover:text-primary"
+                    : "text-soft-white/90 hover:text-soft-white"
+                }`}
               >
                 {link.label}
               </a>
@@ -77,10 +81,14 @@ export function Navigation() {
 
           {/* Logo */}
           <a href="#" className="flex flex-col items-center">
-            <span className="font-serif text-2xl lg:text-3xl tracking-wider text-foreground">
+            <span className={`font-serif text-2xl lg:text-3xl tracking-wider transition-colors ${
+              isScrolled ? "text-foreground" : "text-soft-white"
+            }`}>
               Alma Sol
             </span>
-            <span className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground font-medium">
+            <span className={`text-[10px] tracking-[0.3em] uppercase font-medium transition-colors ${
+              isScrolled ? "text-muted-foreground" : "text-soft-white/60"
+            }`}>
               Boutique
             </span>
           </a>
@@ -91,7 +99,11 @@ export function Navigation() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium tracking-wide uppercase text-foreground hover:text-primary transition-colors"
+                className={`text-sm font-medium tracking-wide uppercase transition-colors ${
+                  isScrolled
+                    ? "text-foreground hover:text-primary"
+                    : "text-soft-white/90 hover:text-soft-white"
+                }`}
               >
                 {link.label}
               </a>
@@ -103,7 +115,7 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              className="hidden sm:flex text-foreground hover:bg-secondary"
+              className={`hidden sm:flex ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
             >
               <Search className="h-4 w-4" />
               <span className="sr-only">Search</span>
@@ -111,7 +123,7 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              className="hidden sm:flex text-foreground hover:bg-secondary"
+              className={`hidden sm:flex ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
             >
               <Heart className="h-4 w-4" />
               <span className="sr-only">Wishlist</span>
@@ -119,7 +131,7 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-foreground hover:bg-secondary"
+              className={`relative ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
             >
               <ShoppingBag className="h-4 w-4" />
               <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold">

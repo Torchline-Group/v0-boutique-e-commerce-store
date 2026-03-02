@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react"
 const collections = [
   {
     title: "Coastal Breeze",
-    subtitle: "Summer Collection",
-    description: "Light fabrics and warm tones inspired by the San Diego coastline.",
+    subtitle: "Day Collection",
+    description: "Light fabrics and fresh silhouettes inspired by the San Diego coastline.",
     image: "/images/collection-summer.jpg",
   },
   {
@@ -45,19 +45,19 @@ export function CollectionsSection() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-warm-brown/30 group-hover:bg-warm-brown/40 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/50 transition-colors duration-300" />
 
               <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12">
-                <p className="text-cream/80 text-xs tracking-[0.3em] uppercase font-medium mb-2">
+                <p className="text-soft-white/70 text-xs tracking-[0.3em] uppercase font-medium mb-2">
                   {collection.subtitle}
                 </p>
-                <h3 className="font-serif text-3xl lg:text-4xl text-cream mb-3">
+                <h3 className="font-serif text-3xl lg:text-4xl text-soft-white mb-3">
                   {collection.title}
                 </h3>
-                <p className="text-cream/80 text-sm leading-relaxed max-w-sm mb-6">
+                <p className="text-soft-white/75 text-sm leading-relaxed max-w-sm mb-6">
                   {collection.description}
                 </p>
-                <span className="inline-flex items-center gap-2 text-cream text-sm tracking-wider uppercase font-medium group-hover:gap-4 transition-all duration-300">
+                <span className="inline-flex items-center gap-2 text-soft-white text-sm tracking-wider uppercase font-medium group-hover:gap-4 transition-all duration-300">
                   Explore Collection
                   <ArrowRight className="h-4 w-4" />
                 </span>

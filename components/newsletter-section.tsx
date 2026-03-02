@@ -44,7 +44,7 @@ export function NewsletterSection() {
             <Button
               type="submit"
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-terracotta-light h-12 px-6 text-sm tracking-widest uppercase font-medium"
+              className="bg-primary text-primary-foreground hover:bg-rose-light h-12 px-6 text-sm tracking-widest uppercase font-medium"
               disabled={submitted}
             >
               {submitted ? (
