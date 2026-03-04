@@ -46,7 +46,7 @@ const products = [
     name: "Off-Shoulder Satin Top",
     price: 95,
     image: "/images/product-6.jpg",
-    tag: "Shawna's Pick",
+    tag: "Jasmine's Pick",
   },
 ]
 
@@ -127,7 +127,7 @@ export function FeaturedProducts() {
             Shop Our Favorites
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Each piece is hand-selected by Shawna for quality, sustainability, and
+            Each piece is hand-selected by Jasmine for quality, sustainability, and
             timeless style. Fashion that tells a story.
           </p>
         </div>

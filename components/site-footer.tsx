@@ -30,7 +30,7 @@ export function SiteFooter() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4">
               <span className="font-serif text-2xl tracking-wider text-soft-white">
-                Alma Sol
+                Dayanna{"'"}s
               </span>
               <span className="block text-[10px] tracking-[0.3em] uppercase text-soft-white/50 font-medium">
                 Boutique
@@ -126,7 +126,7 @@ export function SiteFooter() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-soft-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-soft-white/35 text-xs">
-            &copy; {new Date().getFullYear()} Alma Sol Boutique. All rights reserved.
+            &copy; {new Date().getFullYear()} Dayanna{"'"}s Boutique. All rights reserved.
           </p>
           <p className="text-soft-white/35 text-xs flex items-center gap-1">
             Made with <Heart className="h-3 w-3 text-rose-light fill-rose-light" /> from San Diego &amp; Mexico

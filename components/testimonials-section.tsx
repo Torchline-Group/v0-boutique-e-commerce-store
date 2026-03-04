@@ -8,13 +8,13 @@ const testimonials = [
   {
     name: "Maria R.",
     location: "Los Angeles, CA",
-    text: "I've never felt so valued as a customer. Shawna sent me a handwritten thank you note with my order. The dress quality is incredible and knowing 10% went to a good cause made it even sweeter.",
+    text: "I've never felt so valued as a customer. Jasmine sent me a handwritten thank you note with my order. The dress quality is incredible and knowing 10% went to a good cause made it even sweeter.",
     rating: 5,
   },
   {
     name: "Jessica T.",
     location: "Mexico City, MX",
-    text: "Alma Sol isn't just a store -- it's a movement. The clothes are stunning, sustainable, and every interaction feels personal. Shawna truly cares about her customers and the planet.",
+    text: "Dayanna's isn't just a store -- it's a movement. The clothes are stunning, sustainable, and every interaction feels personal. Jasmine truly cares about her customers and the planet.",
     rating: 5,
   },
   {
@@ -26,7 +26,7 @@ const testimonials = [
   {
     name: "Amanda L.",
     location: "San Diego, CA",
-    text: "I used to shop at the physical store in San Diego and was so happy when they went online. Now I can share Alma Sol with friends everywhere. Same incredible quality and personal service.",
+    text: "I used to shop at the physical store in San Diego and was so happy when they went online. Now I can share Dayanna's with friends everywhere. Same incredible quality and personal service.",
     rating: 5,
   },
 ]

@@ -38,7 +38,7 @@ export function StorySection() {
             <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
               <Image
                 src="/images/about-shawna.jpg"
-                alt="Shawna, founder of Alma Sol Boutique"
+                alt="Jasmine, founder of Dayanna's Boutique"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -55,17 +55,17 @@ export function StorySection() {
               Our Story
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-foreground leading-tight text-balance">
-              Meet Shawna
+              Meet Jasmine
             </h2>
             <div className="mt-6 flex flex-col gap-4 text-muted-foreground leading-relaxed">
               <p>
-                Born and raised in Mexico, Shawna always had a keen eye for great style
+                Born and raised in Mexico, Jasmine always had a keen eye for great style
                 and a deep belief in giving customers a personal experience. She started
                 with two locations in Tijuana and San Diego, pouring her heart into every
                 interaction.
               </p>
               <p>
-                When the cost of rent became overwhelming, Shawna and her business partner
+                When the cost of rent became overwhelming, Jasmine and her business partner
                 made a bold decision -- move online. What seemed impossible became the
                 greatest opportunity: now sourcing from the entire world, offering better
                 prices, and reaching customers everywhere.

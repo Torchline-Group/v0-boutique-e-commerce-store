@@ -25,7 +25,7 @@ export function NewsletterSection() {
             Stay Connected
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-foreground text-balance">
-            Join the Alma Sol Family
+            Join the Dayanna{"'"}s Family
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Be the first to know about new arrivals, exclusive offers, and the

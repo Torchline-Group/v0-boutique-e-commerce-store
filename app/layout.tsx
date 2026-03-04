@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Alma Sol Boutique | Stylish Women\'s Fashion with Soul',
-  description: 'Discover curated eco-friendly fashion at Alma Sol Boutique. Founded in San Diego with Mexican roots, we bring you quality women\'s clothing with a personal touch. 10% of profits support charitable causes.',
+  title: 'Dayanna\'s Boutique | Stylish Women\'s Fashion with Soul',
+  description: 'Discover curated eco-friendly fashion at Dayanna\'s Boutique. Founded in San Diego with Mexican roots, we bring you quality women\'s clothing with a personal touch. 10% of profits support charitable causes.',
   keywords: ['women\'s fashion', 'eco-friendly clothing', 'boutique', 'sustainable fashion', 'San Diego', 'online boutique'],
   icons: {
     icon: [

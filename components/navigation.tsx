@@ -46,7 +46,7 @@ export function Navigation() {
             </SheetTrigger>
             <SheetContent side="left" className="w-80 bg-card border-border">
               <SheetTitle className="font-serif text-2xl tracking-wide text-foreground">
-                Alma Sol
+                Dayanna{"'"}s
               </SheetTitle>
               <nav className="mt-8 flex flex-col gap-6">
                 {navLinks.map((link) => (
@@ -84,7 +84,7 @@ export function Navigation() {
             <span className={`font-serif text-2xl lg:text-3xl tracking-wider transition-colors ${
               isScrolled ? "text-foreground" : "text-soft-white"
             }`}>
-              Alma Sol
+              Dayanna{"'"}s
             </span>
             <span className={`text-[10px] tracking-[0.3em] uppercase font-medium transition-colors ${
               isScrolled ? "text-muted-foreground" : "text-soft-white/60"
