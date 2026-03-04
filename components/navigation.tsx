@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Menu, ShoppingBag, Search, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 
 const navLinks = [
   { label: "Shop", href: "#shop" },
@@ -48,6 +48,9 @@ export function Navigation() {
               <SheetTitle className="font-serif text-2xl tracking-wide text-foreground">
                 Dayanna{"'"}s
               </SheetTitle>
+              <SheetDescription className="sr-only">
+                Navigation menu
+              </SheetDescription>
               <nav className="mt-8 flex flex-col gap-6">
                 {navLinks.map((link) => (
                   <a
