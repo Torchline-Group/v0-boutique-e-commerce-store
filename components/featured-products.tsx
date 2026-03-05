@@ -25,7 +25,7 @@ const products = [
     name: "Pastel Rainbow Crop & Legging Set",
     price: 72,
     image: "/images/product-3.jpg",
-    tag: "Jasmine's Pick",
+    tag: "Jazmin's Pick",
   },
   {
     id: 4,
@@ -127,7 +127,7 @@ export function FeaturedProducts() {
             Shop Our Favorites
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Each piece is hand-selected by Jasmine for quality, sustainability, and
+            Each piece is hand-selected by Jazmin for quality, sustainability, and
             timeless style. Fashion that tells a story.
           </p>
         </div>

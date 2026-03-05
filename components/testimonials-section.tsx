@@ -8,13 +8,13 @@ const testimonials = [
   {
     name: "Maria R.",
     location: "Los Angeles, CA",
-    text: "I've never felt so valued as a customer. Jasmine sent me a handwritten thank you note with my order. The dress quality is incredible and knowing 10% went to a good cause made it even sweeter.",
+    text: "I've never felt so valued as a customer. Jazmin sent me a handwritten thank you note with my order. The dress quality is incredible and knowing 10% went to a good cause made it even sweeter.",
     rating: 5,
   },
   {
     name: "Jessica T.",
     location: "Mexico City, MX",
-    text: "Dayanna's isn't just a store -- it's a movement. The clothes are stunning, sustainable, and every interaction feels personal. Jasmine truly cares about her customers and the planet.",
+    text: "Dayanna's isn't just a store -- it's a movement. The clothes are stunning, sustainable, and every interaction feels personal. Jazmin truly cares about her customers and the planet.",
     rating: 5,
   },
   {
