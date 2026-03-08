@@ -22,9 +22,9 @@ const values = [
   },
   {
     icon: MapPin,
-    title: "Rooted in Community",
+    title: "Rooted in Tijuana",
     description:
-      "Born in Tijuana, grown in San Diego, now shipping worldwide -- our roots shape everything we do.",
+      "Born and based in Tijuana, Mexico, now shipping worldwide -- our roots and values shape everything we do.",
   },
 ]
 
@@ -59,10 +59,9 @@ export function StorySection() {
             </h2>
             <div className="mt-6 flex flex-col gap-4 text-muted-foreground leading-relaxed">
               <p>
-                Born and raised in Mexico, Jazmin always had a keen eye for great style
-                and a deep belief in giving customers a personal experience. She started
-                with two locations in Tijuana and San Diego, pouring her heart into every
-                interaction.
+                Born and raised in Tijuana, Mexico, Jazmin always had a keen eye for great style
+                and a deep belief in giving customers a personal experience. She started by building
+                a loyal following in her home city, pouring her heart into every interaction.
               </p>
               <p>
                 When the cost of rent became overwhelming, Jazmin and her business partner

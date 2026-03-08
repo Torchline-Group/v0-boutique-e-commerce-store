@@ -1,4 +1,4 @@
-import { Heart, Instagram, Facebook, Mail } from "lucide-react"
+import { Heart, Instagram, Mail } from "lucide-react"
 
 const shopLinks = [
   { label: "New Arrivals", href: "#" },
@@ -42,21 +42,25 @@ export function SiteFooter() {
             </p>
             <div className="mt-6 flex items-center gap-4">
               <a
-                href="#"
+                href="https://instagram.com/dayannas_boutiq_and_colective"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-soft-white/50 hover:text-rose-light transition-colors"
-                aria-label="Follow us on Instagram"
+                aria-label="Follow Dayanna's Boutique on Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://instagram.com/jazz_b_c"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-soft-white/50 hover:text-rose-light transition-colors"
-                aria-label="Follow us on Facebook"
+                aria-label="Follow Jazmin on Instagram"
               >
-                <Facebook className="h-5 w-5" />
+                <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="mailto:info@dayannasboutique.com"
                 className="text-soft-white/50 hover:text-rose-light transition-colors"
                 aria-label="Email us"
               >
@@ -129,7 +133,7 @@ export function SiteFooter() {
             &copy; {new Date().getFullYear()} Dayanna{"'"}s Boutique. All rights reserved.
           </p>
           <p className="text-soft-white/35 text-xs flex items-center gap-1">
-            Made with <Heart className="h-3 w-3 text-rose-light fill-rose-light" /> from San Diego &amp; Mexico
+            Made with <Heart className="h-3 w-3 text-rose-light fill-rose-light" /> from Tijuana, Mexico
           </p>
         </div>
       </div>
