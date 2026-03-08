@@ -7,46 +7,52 @@ import { useState } from "react"
 
 const products = [
   {
-    id: 1,
+    id: "dayanna-gold-dress",
     name: "Gold Satin Ruffle Midi Dress",
     price: 89,
     image: "/images/product-1.jpg",
     tag: "Bestseller",
+    description: "Elegant gold satin ruffle midi dress with adjustable straps",
   },
   {
-    id: 2,
+    id: "dayanna-pink-tie-dye",
     name: "Pink Tie-Dye Lounge Set",
     price: 65,
     image: "/images/product-2.jpg",
     tag: "New Arrival",
+    description: "Comfortable tie-dye crop top and matching set",
   },
   {
-    id: 3,
+    id: "dayanna-pastel-rainbow",
     name: "Pastel Rainbow Crop & Legging Set",
     price: 72,
     image: "/images/product-3.jpg",
     tag: "Jazmin's Pick",
+    description: "Vibrant pastel rainbow two-piece set",
   },
   {
-    id: 4,
+    id: "dayanna-textured-pink-mint",
     name: "Textured Pink & Mint Two-Piece Set",
     price: 78,
     image: "/images/product-4.jpg",
     tag: "Limited Edition",
+    description: "Textured fabric two-piece set in pink and mint",
   },
   {
-    id: 5,
+    id: "dayanna-velvet-tracksuit",
     name: "Crushed Velvet Tracksuit",
     price: 85,
     image: "/images/product-5.jpg",
     tag: null,
+    description: "Luxurious crushed velvet tracksuit set",
   },
   {
-    id: 6,
+    id: "dayanna-rainbow-textured",
     name: "Rainbow Textured Crop & Legging Set",
     price: 75,
     image: "/images/product-6.jpg",
     tag: "New Arrival",
+    description: "Rainbow textured crop top and legging set",
   },
 ]
 
@@ -81,13 +87,18 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
             isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <Button
-            size="sm"
-            className="bg-card/95 text-foreground hover:bg-card backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2"
+          <button
+            className="snipcart-add-item bg-card/95 text-foreground hover:bg-card backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2 px-4 py-2 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            data-item-id={product.id}
+            data-item-price={product.price}
+            data-item-description={product.description}
+            data-item-image={product.image}
+            data-item-name={product.name}
+            data-item-url={typeof window !== "undefined" ? window.location.pathname : "/"}
           >
-            <ShoppingBag className="h-3.5 w-3.5 mr-2" />
+            <ShoppingBag className="h-3.5 w-3.5" />
             Add to Bag
-          </Button>
+          </button>
           <Button
             size="icon"
             variant="ghost"

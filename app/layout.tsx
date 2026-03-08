@@ -47,9 +47,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${playfair.variable}`}>
+      <head>
+        <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.css" />
+      </head>
       <body className="font-sans antialiased">
         {children}
         <Analytics />
+        <script
+          async
+          src="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.js"
+        ></script>
+        <div
+          id="snipcart"
+          data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY}
+          hidden
+        ></div>
       </body>
     </html>
   )
