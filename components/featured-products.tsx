@@ -7,52 +7,58 @@ import { useState } from "react"
 
 const products = [
   {
-    id: "dayanna-gold-dress",
+    id: "Dayanna - Dresses - Gold Satin Ruffle Midi Dress",
     name: "Gold Satin Ruffle Midi Dress",
-    price: 89,
+    price: 0,
+    displayPrice: 89,
     image: "/images/product-1.jpg",
     tag: "Bestseller",
-    description: "Elegant gold satin ruffle midi dress with adjustable straps",
+    description: "Elegant gold satin ruffle midi dress with adjustable straps. Store price: $89",
   },
   {
-    id: "dayanna-pink-tie-dye",
+    id: "Dayanna - Lounge Sets - Pink Tie-Dye Lounge Set",
     name: "Pink Tie-Dye Lounge Set",
-    price: 65,
+    price: 0,
+    displayPrice: 65,
     image: "/images/product-2.jpg",
     tag: "New Arrival",
-    description: "Comfortable tie-dye crop top and matching set",
+    description: "Comfortable tie-dye crop top and matching set. Store price: $65",
   },
   {
-    id: "dayanna-pastel-rainbow",
+    id: "Dayanna - Two-Piece Sets - Pastel Rainbow Crop & Legging Set",
     name: "Pastel Rainbow Crop & Legging Set",
-    price: 72,
+    price: 0,
+    displayPrice: 72,
     image: "/images/product-3.jpg",
     tag: "Jazmin's Pick",
-    description: "Vibrant pastel rainbow two-piece set",
+    description: "Vibrant pastel rainbow two-piece set. Store price: $72",
   },
   {
-    id: "dayanna-textured-pink-mint",
+    id: "Dayanna - Two-Piece Sets - Textured Pink & Mint Two-Piece Set",
     name: "Textured Pink & Mint Two-Piece Set",
-    price: 78,
+    price: 0,
+    displayPrice: 78,
     image: "/images/product-4.jpg",
     tag: "Limited Edition",
-    description: "Textured fabric two-piece set in pink and mint",
+    description: "Textured fabric two-piece set in pink and mint. Store price: $78",
   },
   {
-    id: "dayanna-velvet-tracksuit",
+    id: "Dayanna - Tracksuits - Crushed Velvet Tracksuit",
     name: "Crushed Velvet Tracksuit",
-    price: 85,
+    price: 0,
+    displayPrice: 85,
     image: "/images/product-5.jpg",
     tag: null,
-    description: "Luxurious crushed velvet tracksuit set",
+    description: "Luxurious crushed velvet tracksuit set. Store price: $85",
   },
   {
-    id: "dayanna-rainbow-textured",
+    id: "Dayanna - Two-Piece Sets - Rainbow Textured Crop & Legging Set",
     name: "Rainbow Textured Crop & Legging Set",
-    price: 75,
+    price: 0,
+    displayPrice: 75,
     image: "/images/product-6.jpg",
     tag: "New Arrival",
-    description: "Rainbow textured crop top and legging set",
+    description: "Rainbow textured crop top and legging set. Store price: $75",
   },
 ]
 
@@ -118,7 +124,7 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
       <div className="mt-4">
         <h3 className="text-sm font-medium text-foreground">{product.name}</h3>
         <p className="mt-1 text-sm text-primary font-semibold">
-          ${product.price}
+          ${product.displayPrice}
         </p>
       </div>
     </div>
