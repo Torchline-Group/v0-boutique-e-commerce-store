@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Heart, ArrowRight } from "lucide-react"
+import { Heart, ArrowRight, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function GivingSection() {
@@ -12,34 +12,42 @@ export function GivingSection() {
             <div className="flex items-center gap-3 mb-6">
               <Heart className="h-5 w-5 text-rose-light" />
               <p className="text-primary-foreground/80 text-xs tracking-[0.3em] uppercase font-semibold">
-                Giving Back
+                Our Partner in Change
               </p>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary-foreground leading-tight text-balance">
-              10% of Every Purchase Helps Someone in Need
+              10% of Every Purchase Supports Equality Now
             </h2>
             <div className="mt-6 flex flex-col gap-4 text-primary-foreground/85 leading-relaxed">
               <p>
-                We believe fashion can be a force for good. That&apos;s why 10% of our
-                profits go directly to charitable causes -- and you help us choose where.
+                We&apos;re proud partners with <strong>Equality Now</strong>, an organization
+                dedicated to achieving legal equality for women and girls worldwide. Every purchase
+                you make directly supports their fight to end violence, discrimination, trafficking,
+                and harmful practices like child marriage.
               </p>
               <p>
-                Each month, we rotate causes based on your suggestions, spreading support
-                as widely as possible. From local shelters to international aid, every
-                purchase you make creates ripples of positive change.
+                Since 1992, Equality Now has reformed over 130 discriminatory laws and positively
+                impacted millions of lives globally. With your support, we&apos;re helping create
+                a world where every woman and girl can live free from exploitation and fear.
               </p>
-              <p>
-                This isn&apos;t just a business -- it&apos;s a community. And together,
-                we&apos;re proving that doing good and looking good go hand in hand.
+              <p className="text-primary-foreground text-sm">
+                <strong>Our Commitment:</strong> 10% of profits from every order goes directly to
+                Equality Now&apos;s mission to end sexual exploitation, combat trafficking, eliminate
+                harmful practices, and drive systemic legal change.
               </p>
             </div>
-            <Button
-              size="lg"
-              className="mt-8 bg-soft-white text-charcoal hover:bg-blush px-8 py-6 text-sm tracking-widest uppercase font-medium"
-            >
-              Suggest a Cause
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <Button
+                asChild
+                size="lg"
+                className="bg-soft-white text-charcoal hover:bg-blush px-8 py-6 text-sm tracking-widest uppercase font-medium"
+              >
+                <a href="https://www.equalitynow.org" target="_blank" rel="noopener noreferrer">
+                  Learn More About Equality Now
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
           </div>
 
           {/* Image */}
@@ -52,6 +60,19 @@ export function GivingSection() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-primary/10" />
+            
+            {/* Equality Now badge */}
+            <div className="absolute bottom-6 left-6 bg-soft-white/95 backdrop-blur-sm rounded-lg p-4 max-w-xs shadow-lg">
+              <p className="text-charcoal text-xs tracking-[0.2em] uppercase font-bold mb-2">
+                Proud Partner
+              </p>
+              <p className="text-charcoal font-serif text-lg font-semibold">
+                Equality Now
+              </p>
+              <p className="text-charcoal/70 text-xs mt-1">
+                Legal Equality for Women & Girls Worldwide
+              </p>
+            </div>
           </div>
         </div>
 
@@ -59,26 +80,26 @@ export function GivingSection() {
         <div className="mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-primary-foreground/20 pt-12">
           <div className="text-center">
             <p className="font-serif text-4xl lg:text-5xl text-primary-foreground">
-              12+
+              130+
             </p>
             <p className="mt-2 text-primary-foreground/70 text-sm tracking-wider uppercase">
-              Causes Supported
+              Discriminatory Laws Reformed
             </p>
           </div>
           <div className="text-center">
             <p className="font-serif text-4xl lg:text-5xl text-primary-foreground">
-              2,400+
+              1992
             </p>
             <p className="mt-2 text-primary-foreground/70 text-sm tracking-wider uppercase">
-              Happy Customers
+              Driving Change Since
             </p>
           </div>
           <div className="text-center">
             <p className="font-serif text-4xl lg:text-5xl text-primary-foreground">
-              30+
+              Millions
             </p>
             <p className="mt-2 text-primary-foreground/70 text-sm tracking-wider uppercase">
-              Countries Reached
+              Lives Positively Impacted
             </p>
           </div>
         </div>

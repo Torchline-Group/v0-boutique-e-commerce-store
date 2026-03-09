@@ -17,7 +17,7 @@ export function FeaturedProducts() {
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Each piece is hand-selected by Jazmin for quality, sustainability, and
-            timeless style. All models are real. No AI. Fashion that tells a story.
+            timeless style. All models are real. No AI. <strong>10% of every purchase supports Equality Now</strong> in their mission to end violence and discrimination against women and girls worldwide.
           </p>
         </div>
 

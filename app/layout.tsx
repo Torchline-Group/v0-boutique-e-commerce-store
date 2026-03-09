@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: 'Dayanna\'s Boutique | Stylish Women\'s Fashion with Soul',
-  description: 'Discover curated eco-friendly fashion at Dayanna\'s Boutique. Founded in San Diego with Mexican roots, we bring you quality women\'s clothing with a personal touch. 10% of profits support charitable causes.',
+  description: 'Discover curated eco-friendly fashion at Dayanna\'s Boutique in Tijuana, Mexico. We bring you quality women\'s clothing with a personal touch. 10% of every purchase supports Equality Now in ending violence and discrimination against women and girls worldwide.',
   keywords: ['women\'s fashion', 'eco-friendly clothing', 'boutique', 'sustainable fashion', 'San Diego', 'online boutique'],
   icons: {
     icon: [

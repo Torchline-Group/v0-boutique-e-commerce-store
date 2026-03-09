@@ -28,8 +28,8 @@ export function NewsletterSection() {
             Join the Dayanna{"'"}s Family
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Be the first to know about new arrivals, exclusive offers, and the
-            causes we&apos;re supporting this month. Plus, get 15% off your first order.
+            Be the first to know about new arrivals, exclusive offers, and the impact
+            we&apos;re making through our partnership with Equality Now. Plus, get 15% off your first order.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
