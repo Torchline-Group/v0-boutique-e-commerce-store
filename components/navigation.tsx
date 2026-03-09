@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 
 const navLinks = [
-  { label: "Shop", href: "#shop" },
-  { label: "Collections", href: "#collections" },
-  { label: "Our Story", href: "#story" },
-  { label: "Giving Back", href: "#giving" },
-  { label: "Contact", href: "#contact" },
+  { label: "Shop", href: "/shop" },
+  { label: "Collections", href: "/#collections" },
+  { label: "Our Story", href: "/#story" },
+  { label: "Giving Back", href: "/#giving" },
+  { label: "Contact", href: "/#contact" },
 ]
 
 export function Navigation() {

@@ -1,135 +1,7 @@
-"use client"
-
-import Image from "next/image"
-import { Heart, ShoppingBag } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
-
-const products = [
-  {
-    id: "Dayanna - Dresses - Gold Satin Ruffle Midi Dress",
-    name: "Gold Satin Ruffle Midi Dress",
-    price: 0,
-    displayPrice: 89,
-    image: "/images/product-1.jpg",
-    tag: "Bestseller",
-    description: "Elegant gold satin ruffle midi dress with adjustable straps. Store price: $89",
-  },
-  {
-    id: "Dayanna - Lounge Sets - Pink Tie-Dye Lounge Set",
-    name: "Pink Tie-Dye Lounge Set",
-    price: 0,
-    displayPrice: 65,
-    image: "/images/product-2.jpg",
-    tag: "New Arrival",
-    description: "Comfortable tie-dye crop top and matching set. Store price: $65",
-  },
-  {
-    id: "Dayanna - Two-Piece Sets - Pastel Rainbow Crop & Legging Set",
-    name: "Pastel Rainbow Crop & Legging Set",
-    price: 0,
-    displayPrice: 72,
-    image: "/images/product-3.jpg",
-    tag: "Jazmin's Pick",
-    description: "Vibrant pastel rainbow two-piece set. Store price: $72",
-  },
-  {
-    id: "Dayanna - Two-Piece Sets - Textured Pink & Mint Two-Piece Set",
-    name: "Textured Pink & Mint Two-Piece Set",
-    price: 0,
-    displayPrice: 78,
-    image: "/images/product-4.jpg",
-    tag: "Limited Edition",
-    description: "Textured fabric two-piece set in pink and mint. Store price: $78",
-  },
-  {
-    id: "Dayanna - Tracksuits - Crushed Velvet Tracksuit",
-    name: "Crushed Velvet Tracksuit",
-    price: 0,
-    displayPrice: 85,
-    image: "/images/product-5.jpg",
-    tag: null,
-    description: "Luxurious crushed velvet tracksuit set. Store price: $85",
-  },
-  {
-    id: "Dayanna - Two-Piece Sets - Rainbow Textured Crop & Legging Set",
-    name: "Rainbow Textured Crop & Legging Set",
-    price: 0,
-    displayPrice: 75,
-    image: "/images/product-6.jpg",
-    tag: "New Arrival",
-    description: "Rainbow textured crop top and legging set. Store price: $75",
-  },
-]
-
-function ProductCard({ product }: { product: (typeof products)[0] }) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [isLiked, setIsLiked] = useState(false)
-
-  return (
-    <div
-      className="group relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-blush">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-
-        {product.tag && (
-          <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-sm">
-            {product.tag}
-          </span>
-        )}
-
-        {/* Hover overlay actions */}
-        <div
-          className={`absolute inset-x-0 bottom-0 p-4 flex items-end justify-between transition-all duration-300 ${
-            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
-          <button
-            className="snipcart-add-item bg-card/95 text-foreground hover:bg-card backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2 px-4 py-2 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
-            data-item-id={product.id}
-            data-item-price={product.price}
-            data-item-description={product.description}
-            data-item-image={product.image}
-            data-item-name={product.name}
-            data-item-url={typeof window !== "undefined" ? window.location.pathname : "/"}
-          >
-            <ShoppingBag className="h-3.5 w-3.5" />
-            Add to Bag
-          </button>
-          <Button
-            size="icon"
-            variant="ghost"
-            className="bg-card/95 backdrop-blur-sm hover:bg-card text-foreground h-9 w-9"
-            onClick={() => setIsLiked(!isLiked)}
-          >
-            <Heart
-              className={`h-4 w-4 transition-colors ${
-                isLiked ? "fill-primary text-primary" : ""
-              }`}
-            />
-            <span className="sr-only">Add to wishlist</span>
-          </Button>
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <h3 className="text-sm font-medium text-foreground">{product.name}</h3>
-        <p className="mt-1 text-sm text-primary font-semibold">
-          ${product.displayPrice}
-        </p>
-      </div>
-    </div>
-  )
-}
+import { ProductCard } from "@/components/product-card"
+import { products } from "@/lib/products"
+import Link from "next/link"
 
 export function FeaturedProducts() {
   return (
@@ -159,11 +31,12 @@ export function FeaturedProducts() {
         {/* View all CTA */}
         <div className="mt-16 text-center">
           <Button
+            asChild
             variant="outline"
             size="lg"
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-10 py-6 text-sm tracking-widest uppercase font-medium transition-all duration-300"
           >
-            View All Products
+            <Link href="/shop">View All Products</Link>
           </Button>
         </div>
       </div>
