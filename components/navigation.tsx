@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 
 const navLinks = [
-  { label: "Shop", href: "#shop" },
-  { label: "Collections", href: "#collections" },
-  { label: "Our Story", href: "#story" },
-  { label: "Giving Back", href: "#giving" },
-  { label: "Contact", href: "#contact" },
+  { label: "Shop", href: "/shop" },
+  { label: "Collections", href: "/#collections" },
+  { label: "Our Story", href: "/#story" },
+  { label: "Giving Back", href: "/#giving" },
+  { label: "Contact", href: "/#contact" },
 ]
 
 export function Navigation() {
@@ -134,10 +134,10 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              className={`relative ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
+              className={`relative cursor-pointer snipcart-checkout ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
             >
               <ShoppingBag className="h-4 w-4" />
-              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold">
+              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold snipcart-items-count">
                 0
               </span>
               <span className="sr-only">Cart</span>

@@ -1,0 +1,75 @@
+export type Product = {
+  id: string
+  name: string
+  price: number
+  displayPrice: number
+  image: string
+  tag: string | null
+  description: string
+  collection: string
+}
+
+export const products: Product[] = [
+  {
+    id: "Dayanna - Dresses - Gold Satin Ruffle Midi Dress",
+    name: "Gold Satin Ruffle Midi Dress",
+    price: 0,
+    displayPrice: 89,
+    image: "/images/product-1.jpg",
+    tag: "Bestseller",
+    description: "Elegant gold satin ruffle midi dress with adjustable straps. Store price: $89",
+    collection: "Dresses",
+  },
+  {
+    id: "Dayanna - Lounge Sets - Pink Tie-Dye Lounge Set",
+    name: "Pink Tie-Dye Lounge Set",
+    price: 0,
+    displayPrice: 65,
+    image: "/images/product-2.jpg",
+    tag: "New Arrival",
+    description: "Comfortable tie-dye crop top and matching set. Store price: $65",
+    collection: "Lounge Sets",
+  },
+  {
+    id: "Dayanna - Two-Piece Sets - Pastel Rainbow Crop & Legging Set",
+    name: "Pastel Rainbow Crop & Legging Set",
+    price: 0,
+    displayPrice: 72,
+    image: "/images/product-3.jpg",
+    tag: "Jazmin's Pick",
+    description: "Vibrant pastel rainbow two-piece set. Store price: $72",
+    collection: "Two-Piece Sets",
+  },
+  {
+    id: "Dayanna - Two-Piece Sets - Textured Pink & Mint Two-Piece Set",
+    name: "Textured Pink & Mint Two-Piece Set",
+    price: 0,
+    displayPrice: 78,
+    image: "/images/product-4.jpg",
+    tag: "Limited Edition",
+    description: "Textured fabric two-piece set in pink and mint. Store price: $78",
+    collection: "Two-Piece Sets",
+  },
+  {
+    id: "Dayanna - Tracksuits - Crushed Velvet Tracksuit",
+    name: "Crushed Velvet Tracksuit",
+    price: 0,
+    displayPrice: 85,
+    image: "/images/product-5.jpg",
+    tag: null,
+    description: "Luxurious crushed velvet tracksuit set. Store price: $85",
+    collection: "Tracksuits",
+  },
+  {
+    id: "Dayanna - Two-Piece Sets - Rainbow Textured Crop & Legging Set",
+    name: "Rainbow Textured Crop & Legging Set",
+    price: 0,
+    displayPrice: 75,
+    image: "/images/product-6.jpg",
+    tag: "New Arrival",
+    description: "Rainbow textured crop top and legging set. Store price: $75",
+    collection: "Two-Piece Sets",
+  },
+]
+
+export const collections = [...new Set(products.map((p) => p.collection))]
