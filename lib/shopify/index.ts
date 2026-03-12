@@ -20,6 +20,12 @@ const SHOPIFY_STOREFRONT_ACCESS_TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TO
 
 const SHOPIFY_STOREFRONT_API_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/2024-10/graphql.json`
 
+console.log('[v0] Shopify Config:')
+console.log('[v0] Store Domain:', SHOPIFY_STORE_DOMAIN)
+console.log('[v0] API URL:', SHOPIFY_STOREFRONT_API_URL)
+console.log('[v0] Token exists:', !!SHOPIFY_STOREFRONT_ACCESS_TOKEN)
+console.log('[v0] Token first 20 chars:', SHOPIFY_STOREFRONT_ACCESS_TOKEN?.substring(0, 20))
+
 // Shopify API request with token authentication
 async function shopifyFetch<T>({
   query,
