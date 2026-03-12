@@ -15,9 +15,12 @@ const SHOPIFY_STORE_DOMAIN = rawStoreDomain
   ? parseShopifyDomain(rawStoreDomain)
   : fallbackStoreDomain
 
-const SHOPIFY_STOREFRONT_API_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/2025-07/graphql.json`
+// Storefront API Access Token (required for authenticated access)
+const SHOPIFY_STOREFRONT_ACCESS_TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN
 
-// Tokenless Shopify API request
+const SHOPIFY_STOREFRONT_API_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/2024-10/graphql.json`
+
+// Shopify API request with token authentication
 async function shopifyFetch<T>({
   query,
   variables = {},
@@ -25,11 +28,19 @@ async function shopifyFetch<T>({
   query: string
   variables?: Record<string, any>
 }): Promise<{ data: T; errors?: any[] }> {
+  if (!SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
+    throw new Error(
+      'SHOPIFY_STOREFRONT_ACCESS_TOKEN is not set. Please add it in your environment variables. ' +
+      'You can find this in your Shopify Admin under Settings > Apps and sales channels > Develop apps > Create an app > Configure Storefront API scopes > Install app'
+    )
+  }
+
   try {
     const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_ACCESS_TOKEN,
       },
       body: JSON.stringify({
         query,
