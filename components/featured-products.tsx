@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { ProductCard } from "@/components/product-card"
-import { products } from "@/lib/products"
+import { getProductsFromShopify } from "@/lib/products"
 import Link from "next/link"
 
-export function FeaturedProducts() {
+export async function FeaturedProducts() {
+  const products = await getProductsFromShopify()
+  const featuredProducts = products.slice(0, 6) // Show first 6 products
+
   return (
     <section id="shop" className="py-20 lg:py-28 bg-background">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -23,8 +26,12 @@ export function FeaturedProducts() {
 
         {/* Product grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {featuredProducts.map((product, index) => (
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              priority={index < 3}
+            />
           ))}
         </div>
 
