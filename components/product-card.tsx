@@ -6,7 +6,12 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import type { Product } from "@/lib/products"
 
-export function ProductCard({ product }: { product: Product }) {
+interface ProductCardProps {
+  product: Product
+  priority?: boolean
+}
+
+export function ProductCard({ product, priority = false }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
 
@@ -22,6 +27,8 @@ export function ProductCard({ product }: { product: Product }) {
             src={product.image}
             alt={product.name}
             fill
+            priority={priority}
+            loading={priority ? "eager" : "lazy"}
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
@@ -45,7 +52,7 @@ export function ProductCard({ product }: { product: Product }) {
           <button
             className="snipcart-add-item bg-card/95 text-foreground hover:bg-card backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2 px-4 py-2 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
             data-item-id={product.id}
-            data-item-price={product.price}
+            data-item-price={product.displayPrice}
             data-item-description={product.description}
             data-item-image={product.image}
             data-item-name={product.name}

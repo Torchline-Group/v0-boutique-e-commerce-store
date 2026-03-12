@@ -1,30 +1,30 @@
 import { Navigation } from "@/components/navigation"
 import { SiteFooter } from "@/components/site-footer"
-import { ProductCard } from "@/components/product-card"
-import { getProductsFromShopify } from "@/lib/products"
+import { getProductsFromShopify, getCollections } from "@/lib/products"
+import { ShopContent } from "@/components/shop-content"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Shop All Collections | Dayanna's Boutique",
   description:
-    "Browse all collections at Dayanna's Boutique — Dresses, Lounge Sets, Two-Piece Sets, Tracksuits and more. Real models, no AI, curated from Tijuana, Mexico.",
+    "Browse all collections at Dayanna's Boutique — Dresses, Co-Ords, Loungewear, Athleisure and more. Real models, no AI, curated from Tijuana, Mexico.",
 }
 
 export default async function ShopPage() {
   const products = await getProductsFromShopify()
-  const collections = [...new Set(products.map((p) => p.collection))]
+  const collections = getCollections(products)
 
   return (
     <>
       <Navigation />
       <main className="min-h-screen bg-background">
         {/* Page header */}
-        <div className="bg-secondary pt-36 pb-16 text-center">
+        <div className="bg-secondary pt-36 pb-12 text-center">
           <p className="text-primary text-xs tracking-[0.3em] uppercase font-semibold mb-3">
             Dayanna{"'"}s Boutique
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl text-foreground text-balance">
-            All Collections
+            Shop Collection
           </h1>
           <p className="mt-4 text-muted-foreground text-sm max-w-md mx-auto leading-relaxed">
             Every piece hand-selected by Jazmin. Real models, no AI.
@@ -32,86 +32,8 @@ export default async function ShopPage() {
           </p>
         </div>
 
-        {/* Collections */}
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 py-20 space-y-24">
-          {collections.length > 0 ? (
-            collections.map((collection) => {
-              const collectionProducts = products.filter(
-                (p) => p.collection === collection
-              )
-              return (
-                <section key={collection} id={collection.toLowerCase().replace(/\s+/g, "-")}>
-                  {/* Collection header */}
-                  <div className="flex items-center gap-6 mb-10">
-                    <div className="flex-1 h-px bg-border" />
-                    <h2 className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap">
-                      {collection}
-                    </h2>
-                    <div className="flex-1 h-px bg-border" />
-                  </div>
-
-                  {/* Product grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {collectionProducts.map((product) => (
-                      <ProductCard key={product.id} product={product} />
-                    ))}
-                  </div>
-
-                  {/* Coming soon placeholder when only one product in collection */}
-                  {collectionProducts.length < 2 && (
-                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                      {[...Array(3)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="aspect-[3/4] rounded-lg bg-secondary border border-dashed border-border flex flex-col items-center justify-center gap-3 text-muted-foreground"
-                        >
-                          <span className="text-3xl font-serif text-border">+</span>
-                          <span className="text-xs tracking-widest uppercase">Coming Soon</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </section>
-              )
-            })
-          ) : (
-            <div className="text-center py-20 px-6">
-              <div className="bg-secondary rounded-lg p-12 max-w-lg mx-auto">
-                <h2 className="font-serif text-2xl text-foreground mb-4">
-                  Products Coming Soon
-                </h2>
-                <p className="text-sm text-muted-foreground mb-6">
-                  To connect your Shopify store and display products:
-                </p>
-                <ol className="text-xs text-muted-foreground text-left space-y-3 mb-8 bg-background rounded p-6">
-                  <li className="flex gap-3">
-                    <span className="font-semibold min-w-fit">Step 1:</span>
-                    <span>Go to your Shopify Admin Dashboard</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-semibold min-w-fit">Step 2:</span>
-                    <span>Navigate to Settings → Apps and sales channels → Develop apps</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-semibold min-w-fit">Step 3:</span>
-                    <span>Create a new app and configure Storefront API with "Read products" scope</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-semibold min-w-fit">Step 4:</span>
-                    <span>Install the app and copy the Storefront access token</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-semibold min-w-fit">Step 5:</span>
-                    <span>Add the token to your project environment variables as SHOPIFY_STOREFRONT_ACCESS_TOKEN</span>
-                  </li>
-                </ol>
-                <p className="text-xs text-muted-foreground italic">
-                  Once configured, products will appear automatically.
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
+        {/* Shop content with tabs */}
+        <ShopContent products={products} collections={collections} />
 
         {/* Bottom banner */}
         <div className="bg-primary text-primary-foreground text-center py-12 px-4">

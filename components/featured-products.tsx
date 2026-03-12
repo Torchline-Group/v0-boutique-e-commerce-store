@@ -26,29 +26,13 @@ export async function FeaturedProducts() {
 
         {/* Product grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {featuredProducts.length > 0 ? (
-            featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))
-          ) : (
-            <div className="col-span-full text-center py-20 px-6">
-              <div className="bg-secondary rounded-lg p-10 max-w-md mx-auto">
-                <p className="text-sm text-muted-foreground mb-4">
-                  Shopify integration is being set up. To display products:
-                </p>
-                <ol className="text-xs text-muted-foreground text-left space-y-2 mb-6">
-                  <li>1. Go to your Shopify Admin</li>
-                  <li>2. Navigate to Settings → Apps and sales channels → Develop apps</li>
-                  <li>3. Create an app and configure Storefront API with "Read products" scope</li>
-                  <li>4. Copy the Storefront access token</li>
-                  <li>5. Add it to your environment variables as SHOPIFY_STOREFRONT_ACCESS_TOKEN</li>
-                </ol>
-                <p className="text-xs text-muted-foreground">
-                  Once configured, your products will appear here automatically.
-                </p>
-              </div>
-            </div>
-          )}
+          {featuredProducts.map((product, index) => (
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              priority={index < 3}
+            />
+          ))}
         </div>
 
         {/* View all CTA */}
