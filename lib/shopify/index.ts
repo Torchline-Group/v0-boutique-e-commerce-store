@@ -6,25 +6,16 @@ import {
   ShopifyProduct,
 } from './types'
 
-import { parseShopifyDomain } from './parse-shopify-domain'
 import { DEFAULT_PAGE_SIZE, DEFAULT_SORT_KEY } from './constants'
 
-const rawStoreDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
-const fallbackStoreDomain = 'v0-template.myshopify.com'
-const SHOPIFY_STORE_DOMAIN = rawStoreDomain
-  ? parseShopifyDomain(rawStoreDomain)
-  : fallbackStoreDomain
+// Hardcode the store domain to avoid any parsing issues
+// Your store: 0mwnma-df.myshopify.com
+const SHOPIFY_STORE_DOMAIN = '0mwnma-df.myshopify.com'
 
 // Storefront API Access Token (required for authenticated access)
 const SHOPIFY_STOREFRONT_ACCESS_TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN
 
 const SHOPIFY_STOREFRONT_API_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/2024-10/graphql.json`
-
-console.log('[v0] Shopify Config:')
-console.log('[v0] Store Domain:', SHOPIFY_STORE_DOMAIN)
-console.log('[v0] API URL:', SHOPIFY_STOREFRONT_API_URL)
-console.log('[v0] Token exists:', !!SHOPIFY_STOREFRONT_ACCESS_TOKEN)
-console.log('[v0] Token first 20 chars:', SHOPIFY_STOREFRONT_ACCESS_TOKEN?.substring(0, 20))
 
 // Shopify API request with token authentication
 async function shopifyFetch<T>({
