@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { useCart } from "@/lib/cart-context"
 import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -90,7 +89,6 @@ export default function CheckoutPage() {
             </Link>
           </div>
         </main>
-        <Footer />
       </div>
     )
   }
@@ -125,7 +123,7 @@ export default function CheckoutPage() {
             </div>
           </div>
         </main>
-        <Footer />
+        
       </div>
     )
   }
@@ -594,7 +592,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      
     </div>
   )
 }
