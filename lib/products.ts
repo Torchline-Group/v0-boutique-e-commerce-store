@@ -78,7 +78,8 @@ const fallbackProducts: Product[] = [
 
 // Transform Shopify products to our Product type
 export function transformShopifyProduct(product: ShopifyProduct): Product {
-  const image = product.featuredImage?.url || ""
+  // Get image from the images edges array
+  const firstImage = product.images?.edges?.[0]?.node?.url || ""
   const priceValue = parseFloat(product.priceRange?.minVariantPrice?.amount || "0")
 
   return {
@@ -86,7 +87,7 @@ export function transformShopifyProduct(product: ShopifyProduct): Product {
     name: product.title,
     price: priceValue * 100, // Convert to cents for Snipcart
     displayPrice: priceValue,
-    image,
+    image: firstImage,
     tag: null,
     description: product.description || product.title,
     collection: product.productType || "Uncategorized",
