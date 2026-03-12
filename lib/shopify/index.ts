@@ -178,7 +178,6 @@ export async function getProduct(
             node {
               url
               altText
-              thumbhash
             }
           }
         }
@@ -243,7 +242,6 @@ export async function getCollections(first = 10): Promise<ShopifyCollection[]> {
             image {
               url
               altText
-              thumbhash
             }
           }
         }
@@ -305,9 +303,8 @@ export async function getCollectionProducts({
               images(first: 5) {
                 edges {
                   node {
-                    url
-                    altText
-                    thumbhash
+            url
+            altText
                   }
                 }
               }
@@ -398,7 +395,6 @@ export async function createCart(): Promise<ShopifyCart | null> {
                           node {
                             url
                             altText
-                            thumbhash
                           }
                         }
                       }
@@ -472,7 +468,6 @@ export async function addCartLines(
                           node {
                             url
                             altText
-                            thumbhash
                           }
                         }
                       }
@@ -552,7 +547,6 @@ export async function updateCartLines(
                           node {
                             url
                             altText
-                            thumbhash
                           }
                         }
                       }
@@ -632,7 +626,6 @@ export async function removeCartLines(
                           node {
                             url
                             altText
-                            thumbhash
                           }
                         }
                       }
@@ -713,7 +706,6 @@ export async function getCart(cartId: string): Promise<ShopifyCart | null> {
                         node {
                           url
                           altText
-                          thumbhash
                         }
                       }
                     }
