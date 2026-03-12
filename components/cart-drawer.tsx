@@ -4,9 +4,12 @@ import { useCart } from "@/lib/cart-context"
 import { X, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export function CartDrawer() {
+  const router = useRouter()
   const {
     items,
     isOpen,
@@ -17,6 +20,11 @@ export function CartDrawer() {
     totalPrice,
     clearCart,
   } = useCart()
+
+  const handleCheckout = () => {
+    closeCart()
+    router.push("/checkout")
+  }
 
   // Prevent body scroll when cart is open
   useEffect(() => {
@@ -178,9 +186,7 @@ export function CartDrawer() {
               </div>
               <Button
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-sm uppercase tracking-wider font-medium"
-                onClick={() => {
-                  alert("Checkout functionality coming soon! Thank you for shopping with Dayanna's Boutique.")
-                }}
+                onClick={handleCheckout}
               >
                 Proceed to Checkout
               </Button>
