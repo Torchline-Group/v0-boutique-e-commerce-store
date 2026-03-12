@@ -62,7 +62,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-blush">
-        {product.image ? (
+        {product.image && product.image.trim() ? (
           <Image
             src={product.image}
             alt={product.name}
@@ -105,7 +105,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             data-item-id={product.id}
             data-item-price={product.displayPrice.toFixed(2)}
             data-item-description={product.description}
-            data-item-image={product.image}
+            data-item-image={product.image || "/images/placeholder.jpg"}
             data-item-name={product.name}
             data-item-url="/shop"
           >
