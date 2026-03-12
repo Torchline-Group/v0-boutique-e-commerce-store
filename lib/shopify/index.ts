@@ -24,12 +24,10 @@ async function shopifyFetch<T>({
 }: {
   query: string
   variables?: Record<string, any>
-}): Promise<{ data: T; errors?: any[] }> {
+}): Promise<{ data: T; errors?: any[] } | null> {
   if (!SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
-    throw new Error(
-      'SHOPIFY_STOREFRONT_ACCESS_TOKEN is not set. Please add it in your environment variables. ' +
-      'You can find this in your Shopify Admin under Settings > Apps and sales channels > Develop apps > Create an app > Configure Storefront API scopes > Install app'
-    )
+    console.warn('SHOPIFY_STOREFRONT_ACCESS_TOKEN is not set - using fallback products')
+    return null
   }
 
   try {
@@ -43,27 +41,25 @@ async function shopifyFetch<T>({
         query,
         variables,
       }),
-      cache: 'no-store', // Ensure fresh data for cart operations
+      cache: 'no-store',
     })
 
     if (!response.ok) {
-      const errorBody = await response.text()
-      throw new Error(
-        `Shopify API HTTP error! Status: ${response.status}, Body: ${errorBody}`,
-      )
+      console.error(`Shopify API error: ${response.status} - using fallback products`)
+      return null
     }
 
     const json = await response.json()
 
     if (json.errors) {
       console.error('Shopify API errors:', json.errors)
-      throw new Error(`Shopify GraphQL errors: ${JSON.stringify(json.errors)}`)
+      return null
     }
 
     return json
   } catch (error) {
     console.error('Shopify fetch error:', error)
-    throw error
+    return null
   }
 }
 
@@ -140,7 +136,7 @@ export async function getProducts({
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     products: {
       edges: Array<{ node: ShopifyProduct }>
     }
@@ -149,7 +145,11 @@ export async function getProducts({
     variables: { first, sortKey, reverse, query: searchQuery },
   })
 
-  return data.products.edges.map((edge) => edge.node)
+  if (!result) {
+    return []
+  }
+
+  return result.data.products.edges.map((edge) => edge.node)
 }
 
 // Get single product by handle
