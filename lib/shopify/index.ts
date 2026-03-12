@@ -97,7 +97,6 @@ export async function getProducts({
                 node {
                   url
                   altText
-                  thumbhash
                 }
               }
             }
