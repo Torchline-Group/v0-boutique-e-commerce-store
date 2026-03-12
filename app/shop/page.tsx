@@ -75,8 +75,40 @@ export default async function ShopPage() {
               )
             })
           ) : (
-            <div className="text-center py-12 text-muted-foreground">
-              <p>Loading products...</p>
+            <div className="text-center py-20 px-6">
+              <div className="bg-secondary rounded-lg p-12 max-w-lg mx-auto">
+                <h2 className="font-serif text-2xl text-foreground mb-4">
+                  Products Coming Soon
+                </h2>
+                <p className="text-sm text-muted-foreground mb-6">
+                  To connect your Shopify store and display products:
+                </p>
+                <ol className="text-xs text-muted-foreground text-left space-y-3 mb-8 bg-background rounded p-6">
+                  <li className="flex gap-3">
+                    <span className="font-semibold min-w-fit">Step 1:</span>
+                    <span>Go to your Shopify Admin Dashboard</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-semibold min-w-fit">Step 2:</span>
+                    <span>Navigate to Settings → Apps and sales channels → Develop apps</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-semibold min-w-fit">Step 3:</span>
+                    <span>Create a new app and configure Storefront API with "Read products" scope</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-semibold min-w-fit">Step 4:</span>
+                    <span>Install the app and copy the Storefront access token</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-semibold min-w-fit">Step 5:</span>
+                    <span>Add the token to your project environment variables as SHOPIFY_STOREFRONT_ACCESS_TOKEN</span>
+                  </li>
+                </ol>
+                <p className="text-xs text-muted-foreground italic">
+                  Once configured, products will appear automatically.
+                </p>
+              </div>
             </div>
           )}
         </div>
