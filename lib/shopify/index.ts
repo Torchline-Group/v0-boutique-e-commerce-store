@@ -216,14 +216,18 @@ export async function getProduct(
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     product: ShopifyProduct | null
   }>({
     query,
     variables: { handle },
   })
 
-  return data.product
+  if (!result) {
+    return null
+  }
+
+  return result.data.product
 }
 
 // Get collections
@@ -248,7 +252,7 @@ export async function getCollections(first = 10): Promise<ShopifyCollection[]> {
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     collections: {
       edges: Array<{ node: ShopifyCollection }>
     }
@@ -257,7 +261,11 @@ export async function getCollections(first = 10): Promise<ShopifyCollection[]> {
     variables: { first },
   })
 
-  return data.collections.edges.map((edge) => edge.node)
+  if (!result) {
+    return []
+  }
+
+  return result.data.collections.edges.map((edge) => edge.node)
 }
 
 // Get products from a specific collection (simplified - no server-side filtering)
@@ -340,7 +348,7 @@ export async function getCollectionProducts({
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     collection: {
       products: {
         edges: Array<{ node: ShopifyProduct }>
@@ -357,15 +365,15 @@ export async function getCollectionProducts({
     },
   })
 
-  if (!data.collection) {
+  if (!result || !result.data.collection) {
     return []
   }
 
-  return data.collection.products.edges.map((edge) => edge.node)
+  return result.data.collection.products.edges.map((edge) => edge.node)
 }
 
 // Create cart
-export async function createCart(): Promise<ShopifyCart> {
+export async function createCart(): Promise<ShopifyCart | null> {
   const query = /* gql */ `
     mutation cartCreate {
       cartCreate {
@@ -417,25 +425,29 @@ export async function createCart(): Promise<ShopifyCart> {
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     cartCreate: {
       cart: ShopifyCart
       userErrors: Array<{ field: string; message: string }>
     }
   }>({ query })
 
-  if (data.cartCreate.userErrors.length > 0) {
-    throw new Error(data.cartCreate.userErrors[0].message)
+  if (!result) {
+    return null
   }
 
-  return data.cartCreate.cart
+  if (result.data.cartCreate.userErrors.length > 0) {
+    throw new Error(result.data.cartCreate.userErrors[0].message)
+  }
+
+  return result.data.cartCreate.cart
 }
 
 // Add items to cart
 export async function addCartLines(
   cartId: string,
   lines: Array<{ merchandiseId: string; quantity: number }>,
-): Promise<ShopifyCart> {
+): Promise<ShopifyCart | null> {
   const query = /* gql */ `
     mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
       cartLinesAdd(cartId: $cartId, lines: $lines) {
@@ -487,7 +499,7 @@ export async function addCartLines(
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     cartLinesAdd: {
       cart: ShopifyCart
       userErrors: Array<{ field: string; message: string }>
@@ -500,18 +512,22 @@ export async function addCartLines(
     },
   })
 
-  if (data.cartLinesAdd.userErrors.length > 0) {
-    throw new Error(data.cartLinesAdd.userErrors[0].message)
+  if (!result) {
+    return null
   }
 
-  return data.cartLinesAdd.cart
+  if (result.data.cartLinesAdd.userErrors.length > 0) {
+    throw new Error(result.data.cartLinesAdd.userErrors[0].message)
+  }
+
+  return result.data.cartLinesAdd.cart
 }
 
 // Update items in cart
 export async function updateCartLines(
   cartId: string,
   lines: Array<{ id: string; quantity: number }>,
-): Promise<ShopifyCart> {
+): Promise<ShopifyCart | null> {
   const query = /* gql */ `
     mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
       cartLinesUpdate(cartId: $cartId, lines: $lines) {
@@ -563,7 +579,7 @@ export async function updateCartLines(
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     cartLinesUpdate: {
       cart: ShopifyCart
       userErrors: Array<{ field: string; message: string }>
@@ -576,18 +592,22 @@ export async function updateCartLines(
     },
   })
 
-  if (data.cartLinesUpdate.userErrors.length > 0) {
-    throw new Error(data.cartLinesUpdate.userErrors[0].message)
+  if (!result) {
+    return null
   }
 
-  return data.cartLinesUpdate.cart
+  if (result.data.cartLinesUpdate.userErrors.length > 0) {
+    throw new Error(result.data.cartLinesUpdate.userErrors[0].message)
+  }
+
+  return result.data.cartLinesUpdate.cart
 }
 
 // Remove items from cart
 export async function removeCartLines(
   cartId: string,
   lineIds: string[],
-): Promise<ShopifyCart> {
+): Promise<ShopifyCart | null> {
   const query = /* gql */ `
     mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
       cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
@@ -639,7 +659,7 @@ export async function removeCartLines(
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     cartLinesRemove: {
       cart: ShopifyCart
       userErrors: Array<{ field: string; message: string }>
@@ -652,11 +672,15 @@ export async function removeCartLines(
     },
   })
 
-  if (data.cartLinesRemove.userErrors.length > 0) {
-    throw new Error(data.cartLinesRemove.userErrors[0].message)
+  if (!result) {
+    return null
   }
 
-  return data.cartLinesRemove.cart
+  if (result.data.cartLinesRemove.userErrors.length > 0) {
+    throw new Error(result.data.cartLinesRemove.userErrors[0].message)
+  }
+
+  return result.data.cartLinesRemove.cart
 }
 
 // Get cart
@@ -719,12 +743,16 @@ export async function getCart(cartId: string): Promise<ShopifyCart | null> {
     }
   `
 
-  const { data } = await shopifyFetch<{
+  const result = await shopifyFetch<{
     cart: ShopifyCart | null
   }>({
     query,
     variables: { cartId },
   })
 
-  return data.cart
+  if (!result) {
+    return null
+  }
+
+  return result.data.cart
 }
