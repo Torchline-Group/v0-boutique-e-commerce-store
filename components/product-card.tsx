@@ -1,10 +1,12 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { Heart, ShoppingBag, Star, Truck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState, useMemo } from "react"
 import type { Product } from "@/lib/products"
+import { useCart } from "@/lib/cart-context"
 
 interface ProductCardProps {
   product: Product
@@ -25,6 +27,10 @@ function seededRandom(seed: string) {
 export function ProductCard({ product, priority = false }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
+  const { addToCart } = useCart()
+
+  // Generate a URL-friendly slug from the product id
+  const productSlug = encodeURIComponent(product.id)
 
   // Generate consistent promotional data based on product id
   const promoData = useMemo(() => {
@@ -55,14 +61,21 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     }
   }, [product.id, product.displayPrice])
 
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToCart(product)
+  }
+
   return (
     <div
       className="group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-blush">
-        {product.image && product.image.trim() ? (
+      <Link href={`/product/${productSlug}`} className="block">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-blush">
+          {product.image && product.image.trim() ? (
           <Image
             src={product.image}
             alt={product.name}
@@ -101,13 +114,8 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           }`}
         >
           <button
-            className="snipcart-add-item bg-card/95 text-foreground hover:bg-card backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2 px-4 py-2 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
-            data-item-id={product.id}
-            data-item-price={product.displayPrice.toFixed(2)}
-            data-item-description={product.description}
-            data-item-image={product.image || "/images/placeholder.jpg"}
-            data-item-name={product.name}
-            data-item-url="/shop"
+            onClick={handleAddToCart}
+            className="bg-card/95 text-foreground hover:bg-card backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2 px-4 py-2 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             <ShoppingBag className="h-3.5 w-3.5" />
             Add to Bag
@@ -116,7 +124,11 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             size="icon"
             variant="ghost"
             className="bg-card/95 backdrop-blur-sm hover:bg-card text-foreground h-9 w-9"
-            onClick={() => setIsLiked(!isLiked)}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              setIsLiked(!isLiked)
+            }}
           >
             <Heart
               className={`h-4 w-4 transition-colors ${
@@ -127,9 +139,12 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           </Button>
         </div>
       </div>
+      </Link>
 
       <div className="mt-4 space-y-2">
-        <h3 className="text-sm font-medium text-foreground line-clamp-1">{product.name}</h3>
+        <Link href={`/product/${productSlug}`} className="hover:text-primary transition-colors">
+          <h3 className="text-sm font-medium text-foreground line-clamp-1">{product.name}</h3>
+        </Link>
         
         {/* Star Rating */}
         <div className="flex items-center gap-1.5">

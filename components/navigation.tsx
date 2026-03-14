@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Menu, ShoppingBag, Search, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
+import { useCart } from "@/lib/cart-context"
 
 const navLinks = [
   { label: "Shop", href: "/shop" },
@@ -15,6 +16,7 @@ const navLinks = [
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const { openCart, totalItems } = useCart()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
@@ -134,13 +136,16 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              className={`relative cursor-pointer snipcart-checkout ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
+              onClick={openCart}
+              className={`relative cursor-pointer ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
             >
               <ShoppingBag className="h-4 w-4" />
-              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold snipcart-items-count">
-                0
-              </span>
-              <span className="sr-only">Cart</span>
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold">
+                  {totalItems}
+                </span>
+              )}
+              <span className="sr-only">Cart ({totalItems} items)</span>
             </Button>
           </div>
         </nav>
