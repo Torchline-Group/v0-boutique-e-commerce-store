@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button"
 import { ProductCard } from "@/components/product-card"
 import { getProductsFromShopify } from "@/lib/products"
-import Link from "next/link"
+import { ExternalLink } from "lucide-react"
+
+const SHOPIFY_URL = "https://shop.dayannaboutique.com"
 
 export async function FeaturedProducts() {
   const products = await getProductsFromShopify()
-  const featuredProducts = products.slice(0, 6) // Show first 6 products
+  const featuredProducts = products.slice(0, 6)
 
   return (
     <section id="shop" className="py-20 lg:py-28 bg-background">
@@ -20,16 +22,18 @@ export async function FeaturedProducts() {
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Each piece is hand-selected by Jazmin for quality, sustainability, and
-            timeless style. All models are real. No AI. <strong>10% of every purchase supports Equality Now</strong> in their mission to end violence and discrimination against women and girls worldwide.
+            timeless style. All models are real. No AI.{" "}
+            <strong>10% of every purchase supports Equality Now</strong> in their
+            mission to end violence and discrimination against women and girls worldwide.
           </p>
         </div>
 
         {/* Product grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {featuredProducts.map((product, index) => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
+            <ProductCard
+              key={product.id}
+              product={product}
               priority={index < 3}
             />
           ))}
@@ -43,7 +47,10 @@ export async function FeaturedProducts() {
             size="lg"
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-10 py-6 text-sm tracking-widest uppercase font-medium transition-all duration-300"
           >
-            <Link href="/shop">View All Products</Link>
+            <a href={SHOPIFY_URL} target="_blank" rel="noopener noreferrer">
+              Shop All Products
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
           </Button>
         </div>
       </div>

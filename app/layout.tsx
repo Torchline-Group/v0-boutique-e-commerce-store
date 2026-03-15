@@ -14,23 +14,22 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Dayanna\'s Boutique | Stylish Women\'s Fashion with Soul',
-  description: 'Discover curated eco-friendly fashion at Dayanna\'s Boutique in Tijuana, Mexico. We bring you quality women\'s clothing with a personal touch. 10% of every purchase supports Equality Now in ending violence and discrimination against women and girls worldwide.',
-  keywords: ['women\'s fashion', 'eco-friendly clothing', 'boutique', 'sustainable fashion', 'San Diego', 'online boutique'],
+  title: "Dayanna's Boutique | About Us - Fashion With Soul",
+  description:
+    "Learn about Dayanna's Boutique — curated eco-friendly fashion from Tijuana, Mexico. Discover our story, mission, and 10% charity commitment. Shop at shop.dayannaboutique.com",
+  keywords: [
+    "women's fashion",
+    "eco-friendly clothing",
+    "boutique",
+    "sustainable fashion",
+    "about us",
+    "Dayanna's Boutique",
+  ],
   icons: {
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
     apple: '/apple-icon.png',
   },

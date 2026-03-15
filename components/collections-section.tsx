@@ -1,5 +1,7 @@
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { ExternalLink } from "lucide-react"
+
+const SHOPIFY_URL = "https://shop.dayannaboutique.com"
 
 const collections = [
   {
@@ -7,12 +9,14 @@ const collections = [
     subtitle: "Day Collection",
     description: "Light fabrics and fresh silhouettes inspired by the San Diego coastline.",
     image: "/images/collection-summer.jpg",
+    href: `${SHOPIFY_URL}/collections/coastal-breeze`,
   },
   {
     title: "Golden Hour",
     subtitle: "Evening Collection",
     description: "Elegant pieces for nights that deserve something special.",
     image: "/images/collection-evening.jpg",
+    href: `${SHOPIFY_URL}/collections/golden-hour`,
   },
 ]
 
@@ -28,6 +32,9 @@ export function CollectionsSection() {
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-foreground text-balance">
             Our Collections
           </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Browse our full range at our Shopify store — new arrivals added weekly.
+          </p>
         </div>
 
         {/* Collection cards */}
@@ -35,7 +42,9 @@ export function CollectionsSection() {
           {collections.map((collection) => (
             <a
               key={collection.title}
-              href="#"
+              href={collection.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative overflow-hidden rounded-lg aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5]"
             >
               <Image
@@ -58,8 +67,8 @@ export function CollectionsSection() {
                   {collection.description}
                 </p>
                 <span className="inline-flex items-center gap-2 text-soft-white text-sm tracking-wider uppercase font-medium group-hover:gap-4 transition-all duration-300">
-                  Explore Collection
-                  <ArrowRight className="h-4 w-4" />
+                  Shop Collection
+                  <ExternalLink className="h-4 w-4" />
                 </span>
               </div>
             </a>

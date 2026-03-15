@@ -1,22 +1,22 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, ShoppingBag, Search, Heart } from "lucide-react"
+import { Menu, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
-import { useCart } from "@/lib/cart-context"
+
+const SHOPIFY_URL = "https://shop.dayannaboutique.com"
 
 const navLinks = [
-  { label: "Shop", href: "/shop" },
-  { label: "Collections", href: "/#collections" },
-  { label: "Our Story", href: "/#story" },
-  { label: "Giving Back", href: "/#giving" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Shop", href: SHOPIFY_URL, external: true },
+  { label: "Collections", href: "/#collections", external: false },
+  { label: "Our Story", href: "/#story", external: false },
+  { label: "Giving Back", href: "/#giving", external: false },
+  { label: "Contact", href: "/#contact", external: false },
 ]
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { openCart, totalItems } = useCart()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
@@ -27,13 +27,12 @@ export function Navigation() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+        isScrolled ? "bg-card/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <nav className="flex items-center justify-between h-16 lg:h-20">
+
           {/* Mobile menu */}
           <Sheet>
             <SheetTrigger asChild>
@@ -50,17 +49,17 @@ export function Navigation() {
               <SheetTitle className="font-serif text-2xl tracking-wide text-foreground">
                 Dayanna{"'"}s
               </SheetTitle>
-              <SheetDescription className="sr-only">
-                Navigation menu
-              </SheetDescription>
+              <SheetDescription className="sr-only">Navigation menu</SheetDescription>
               <nav className="mt-8 flex flex-col gap-6">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-lg font-sans text-foreground hover:text-primary transition-colors"
+                    {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="text-lg font-sans text-foreground hover:text-primary transition-colors flex items-center gap-2"
                   >
                     {link.label}
+                    {link.external && <ExternalLink className="h-4 w-4 opacity-50" />}
                   </a>
                 ))}
               </nav>
@@ -73,19 +72,19 @@ export function Navigation() {
               <a
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-medium tracking-wide uppercase transition-colors ${
-                  isScrolled
-                    ? "text-foreground hover:text-primary"
-                    : "text-soft-white/90 hover:text-soft-white"
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className={`text-sm font-medium tracking-wide uppercase transition-colors flex items-center gap-1.5 ${
+                  isScrolled ? "text-foreground hover:text-primary" : "text-soft-white/90 hover:text-soft-white"
                 }`}
               >
                 {link.label}
+                {link.external && <ExternalLink className="h-3 w-3 opacity-60" />}
               </a>
             ))}
           </div>
 
           {/* Logo */}
-          <a href="#" className="flex flex-col items-center">
+          <a href="/" className="flex flex-col items-center">
             <span className={`font-serif text-2xl lg:text-3xl tracking-wider transition-colors ${
               isScrolled ? "text-foreground" : "text-soft-white"
             }`}>
@@ -104,10 +103,9 @@ export function Navigation() {
               <a
                 key={link.label}
                 href={link.href}
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className={`text-sm font-medium tracking-wide uppercase transition-colors ${
-                  isScrolled
-                    ? "text-foreground hover:text-primary"
-                    : "text-soft-white/90 hover:text-soft-white"
+                  isScrolled ? "text-foreground hover:text-primary" : "text-soft-white/90 hover:text-soft-white"
                 }`}
               >
                 {link.label}
@@ -115,39 +113,22 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Icons */}
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`hidden sm:flex ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
-            >
-              <Search className="h-4 w-4" />
-              <span className="sr-only">Search</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`hidden sm:flex ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
-            >
-              <Heart className="h-4 w-4" />
-              <span className="sr-only">Wishlist</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={openCart}
-              className={`relative cursor-pointer ${isScrolled ? "text-foreground hover:bg-secondary" : "text-soft-white/90 hover:bg-soft-white/10"}`}
-            >
-              <ShoppingBag className="h-4 w-4" />
-              {totalItems > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold">
-                  {totalItems}
-                </span>
-              )}
-              <span className="sr-only">Cart ({totalItems} items)</span>
-            </Button>
-          </div>
+          {/* Shop Now CTA */}
+          <Button
+            asChild
+            size="sm"
+            className={`${
+              isScrolled
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "bg-soft-white text-charcoal hover:bg-soft-white/90"
+            } px-4 py-2 text-xs tracking-wider uppercase font-medium`}
+          >
+            <a href={SHOPIFY_URL} target="_blank" rel="noopener noreferrer">
+              Shop Now
+              <ExternalLink className="ml-1.5 h-3 w-3" />
+            </a>
+          </Button>
+
         </nav>
       </div>
     </header>
