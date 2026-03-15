@@ -9,7 +9,6 @@ const SHOPIFY_URL = "https://shop.dayannaboutique.com"
 
 const navLinks = [
   { label: "Shop", href: SHOPIFY_URL, external: true },
-  { label: "Collections", href: "/#collections", external: false },
   { label: "Our Story", href: "/#story", external: false },
   { label: "Giving Back", href: "/#giving", external: false },
   { label: "Contact", href: "/#contact", external: false },
