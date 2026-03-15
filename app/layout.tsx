@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { DM_Sans, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { CartProvider } from '@/lib/cart-context'
-import { CartDrawer } from '@/components/cart-drawer'
 import './globals.css'
 
 const dmSans = DM_Sans({
@@ -51,11 +49,8 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${dmSans.variable} ${playfair.variable}`}>
       <head />
       <body className="font-sans antialiased">
-        <CartProvider>
-          {children}
-          <CartDrawer />
-        </CartProvider>
-<Analytics />
+        {children}
+        <Analytics />
       </body>
     </html>
   )
