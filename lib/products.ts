@@ -3,6 +3,7 @@ import type { ShopifyProduct } from "@/lib/shopify/types"
 
 export type Product = {
   id: string
+  handle: string
   name: string
   price: number
   displayPrice: number
@@ -32,6 +33,7 @@ export const collectionOrder = ["New Arrivals", "Dresses", "Co-Ords", "Loungewea
 const fallbackProducts: Product[] = [
   {
     id: "Dayanna - Classic - Gold Satin Ruffle Midi Dress",
+    handle: "gold-satin-ruffle-midi-dress",
     name: "Gold Satin Ruffle Midi Dress",
     price: 8900,
     displayPrice: 89,
@@ -42,6 +44,7 @@ const fallbackProducts: Product[] = [
   },
   {
     id: "Dayanna - Classic - Pink Tie-Dye Lounge Set",
+    handle: "pink-tie-dye-lounge-set",
     name: "Pink Tie-Dye Lounge Set",
     price: 6500,
     displayPrice: 65,
@@ -52,6 +55,7 @@ const fallbackProducts: Product[] = [
   },
   {
     id: "Dayanna - Classic - Pastel Rainbow Crop & Legging Set",
+    handle: "pastel-rainbow-crop-legging-set",
     name: "Pastel Rainbow Crop & Legging Set",
     price: 7200,
     displayPrice: 72,
@@ -62,6 +66,7 @@ const fallbackProducts: Product[] = [
   },
   {
     id: "Dayanna - Classic - Textured Pink & Mint Two-Piece Set",
+    handle: "textured-pink-mint-two-piece-set",
     name: "Textured Pink & Mint Two-Piece Set",
     price: 7800,
     displayPrice: 78,
@@ -72,6 +77,7 @@ const fallbackProducts: Product[] = [
   },
   {
     id: "Dayanna - Classic - Crushed Velvet Tracksuit",
+    handle: "crushed-velvet-tracksuit",
     name: "Crushed Velvet Tracksuit",
     price: 8500,
     displayPrice: 85,
@@ -82,6 +88,7 @@ const fallbackProducts: Product[] = [
   },
   {
     id: "Dayanna - Classic - Rainbow Textured Crop & Legging Set",
+    handle: "rainbow-textured-crop-legging-set",
     name: "Rainbow Textured Crop & Legging Set",
     price: 7500,
     displayPrice: 75,
@@ -106,8 +113,9 @@ export function transformShopifyProduct(product: ShopifyProduct): Product {
 
   return {
     id: product.id,
+    handle: product.handle || product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
     name: product.title,
-    price: priceValue * 100, // Convert to cents for Snipcart
+    price: priceValue * 100,
     displayPrice: priceValue,
     image: firstImage,
     tag: null,

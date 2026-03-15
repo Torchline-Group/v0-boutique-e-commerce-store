@@ -1,6 +1,8 @@
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+const SHOPIFY_URL = "https://shop.dayannaboutique.com"
 
 export function HeroSection() {
   return (
@@ -35,18 +37,25 @@ export function HeroSection() {
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Button
+              asChild
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-rose-light px-8 py-6 text-sm tracking-widest uppercase font-medium"
             >
-              Shop New Arrivals
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <a href={SHOPIFY_URL} target="_blank" rel="noopener noreferrer">
+                Shop New Arrivals
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
             </Button>
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="border-soft-white/40 text-soft-white hover:bg-soft-white/10 hover:text-soft-white px-8 py-6 text-sm tracking-widest uppercase font-medium bg-transparent"
             >
-              Our Story
+              <a href="#story">
+                Our Story
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </Button>
           </div>
         </div>

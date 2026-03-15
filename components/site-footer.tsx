@@ -1,24 +1,25 @@
-import { Heart, Instagram, Mail } from "lucide-react"
+import { Heart, Instagram, Mail, Facebook } from "lucide-react"
+
+const SHOPIFY_URL = "https://shop.dayannaboutique.com"
 
 const shopLinks = [
-  { label: "New Arrivals", href: "#" },
-  { label: "Bestsellers", href: "#" },
-  { label: "Collections", href: "#" },
-  { label: "Sale", href: "#" },
+  { label: "New Arrivals", href: `${SHOPIFY_URL}/collections/new-arrivals` },
+  { label: "Bestsellers", href: `${SHOPIFY_URL}/collections/best-sellers` },
+  { label: "All Collections", href: `${SHOPIFY_URL}/collections` },
+  { label: "Sale", href: `${SHOPIFY_URL}/collections/sale` },
 ]
 
 const aboutLinks = [
-  { label: "Our Story", href: "#story" },
-  { label: "Giving Back", href: "#giving" },
-  { label: "Sustainability", href: "#" },
-  { label: "Press", href: "#" },
+  { label: "Our Story", href: "#story", external: false },
+  { label: "Giving Back", href: "#giving", external: false },
+  { label: "Shop Our Store", href: SHOPIFY_URL, external: true },
 ]
 
 const helpLinks = [
-  { label: "Shipping & Returns", href: "#" },
-  { label: "Size Guide", href: "#" },
-  { label: "FAQ", href: "#" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Shipping & Returns", href: `${SHOPIFY_URL}/pages/shipping-returns`, external: true },
+  { label: "Size Guide", href: `${SHOPIFY_URL}/pages/size-guide`, external: true },
+  { label: "FAQ", href: `${SHOPIFY_URL}/pages/faq`, external: true },
+  { label: "Contact Us", href: "#contact", external: false },
 ]
 
 export function SiteFooter() {
@@ -26,6 +27,7 @@ export function SiteFooter() {
     <footer id="contact" className="bg-plum py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4">
@@ -60,6 +62,15 @@ export function SiteFooter() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
+                href="https://www.facebook.com/dayannasboutique"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-soft-white/50 hover:text-rose-light transition-colors"
+                aria-label="Follow Dayanna's Boutique on Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
                 href="mailto:info@dayannasboutique.com"
                 className="text-soft-white/50 hover:text-rose-light transition-colors"
                 aria-label="Email us"
@@ -79,6 +90,8 @@ export function SiteFooter() {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-soft-white/50 text-sm hover:text-soft-white transition-colors"
                   >
                     {link.label}
@@ -98,6 +111,7 @@ export function SiteFooter() {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="text-soft-white/50 text-sm hover:text-soft-white transition-colors"
                   >
                     {link.label}
@@ -117,6 +131,7 @@ export function SiteFooter() {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="text-soft-white/50 text-sm hover:text-soft-white transition-colors"
                   >
                     {link.label}

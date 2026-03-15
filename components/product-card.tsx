@@ -1,12 +1,12 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
 import { Heart, ShoppingBag, Star, Truck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState, useMemo } from "react"
 import type { Product } from "@/lib/products"
-import { useCart } from "@/lib/cart-context"
+
+const SHOPIFY_URL = "https://shop.dayannaboutique.com"
 
 interface ProductCardProps {
   product: Product
@@ -27,29 +27,22 @@ function seededRandom(seed: string) {
 export function ProductCard({ product, priority = false }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
-  const { addToCart } = useCart()
 
-  // Generate a URL-friendly slug from the product id
-  const productSlug = encodeURIComponent(product.id)
+  // Link goes to the product page on Shopify using its handle
+  const productUrl = product.handle
+    ? `${SHOPIFY_URL}/products/${product.handle}`
+    : SHOPIFY_URL
 
   // Generate consistent promotional data based on product id
   const promoData = useMemo(() => {
     const seed = seededRandom(product.id)
-    
-    // Discount between 10% and 30%
-    const discountPercent = 10 + (seed % 21) // 10-30
+    const discountPercent = 10 + (seed % 21)
     const originalPrice = product.displayPrice / (1 - discountPercent / 100)
-    
-    // Star rating between 4.0 and 5.0
-    const rating = 4 + ((seed % 11) / 10) // 4.0-5.0
-    
-    // Review count between 1 and 35
+    const rating = 4 + ((seed % 11) / 10)
     const reviewCount = 1 + (seed % 35)
-    
-    // Badges - some products get special badges
     const badgeOptions = ["Top Seller", "Best Deal", "Hot", "Limited", null, null, null]
     const badge = badgeOptions[seed % badgeOptions.length]
-    
+
     return {
       discountPercent,
       originalPrice: originalPrice.toFixed(2),
@@ -61,91 +54,81 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     }
   }, [product.id, product.displayPrice])
 
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    addToCart(product)
-  }
-
   return (
     <div
       className="group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link href={`/product/${productSlug}`} className="block">
+      <a href={productUrl} target="_blank" rel="noopener noreferrer" className="block">
         <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-blush">
           {product.image && product.image.trim() ? (
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            priority={priority}
-            loading={priority ? "eager" : "lazy"}
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-secondary">
-            <span className="text-muted-foreground text-sm">No image</span>
-          </div>
-        )}
-
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-          {product.tag && (
-            <span className="bg-primary text-primary-foreground text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-sm">
-              {product.tag}
-            </span>
-          )}
-          {promoData.badge && (
-            <span className="bg-emerald-600 text-white text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-sm">
-              {promoData.badge}
-            </span>
-          )}
-          <span className="bg-red-500 text-white text-[10px] tracking-widest uppercase font-bold px-2 py-1 rounded-sm">
-            {promoData.discountPercent}% OFF
-          </span>
-        </div>
-
-        <div
-          className={`absolute inset-x-0 bottom-0 p-4 flex items-end justify-between transition-all duration-300 ${
-            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
-          <button
-            onClick={handleAddToCart}
-            className="bg-card/95 text-foreground hover:bg-card backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2 px-4 py-2 rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
-          >
-            <ShoppingBag className="h-3.5 w-3.5" />
-            Add to Bag
-          </button>
-          <Button
-            size="icon"
-            variant="ghost"
-            className="bg-card/95 backdrop-blur-sm hover:bg-card text-foreground h-9 w-9"
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              setIsLiked(!isLiked)
-            }}
-          >
-            <Heart
-              className={`h-4 w-4 transition-colors ${
-                isLiked ? "fill-primary text-primary" : ""
-              }`}
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              priority={priority}
+              loading={priority ? "eager" : "lazy"}
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
-            <span className="sr-only">Add to wishlist</span>
-          </Button>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-secondary">
+              <span className="text-muted-foreground text-sm">No image</span>
+            </div>
+          )}
+
+          {/* Badges */}
+          <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+            {product.tag && (
+              <span className="bg-primary text-primary-foreground text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-sm">
+                {product.tag}
+              </span>
+            )}
+            {promoData.badge && (
+              <span className="bg-emerald-600 text-white text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-sm">
+                {promoData.badge}
+              </span>
+            )}
+            <span className="bg-red-500 text-white text-[10px] tracking-widest uppercase font-bold px-2 py-1 rounded-sm">
+              {promoData.discountPercent}% OFF
+            </span>
+          </div>
+
+          {/* Hover overlay */}
+          <div
+            className={`absolute inset-x-0 bottom-0 p-4 flex items-end justify-between transition-all duration-300 ${
+              isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            <span className="bg-card/95 text-foreground backdrop-blur-sm text-xs tracking-wider uppercase font-medium flex-1 mr-2 px-4 py-2 rounded-md flex items-center justify-center gap-2">
+              <ShoppingBag className="h-3.5 w-3.5" />
+              Shop Now
+            </span>
+            <Button
+              size="icon"
+              variant="ghost"
+              className="bg-card/95 backdrop-blur-sm hover:bg-card text-foreground h-9 w-9"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setIsLiked(!isLiked)
+              }}
+            >
+              <Heart
+                className={`h-4 w-4 transition-colors ${isLiked ? "fill-primary text-primary" : ""}`}
+              />
+              <span className="sr-only">Save to wishlist</span>
+            </Button>
+          </div>
         </div>
-      </div>
-      </Link>
+      </a>
 
       <div className="mt-4 space-y-2">
-        <Link href={`/product/${productSlug}`} className="hover:text-primary transition-colors">
+        <a href={productUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
           <h3 className="text-sm font-medium text-foreground line-clamp-1">{product.name}</h3>
-        </Link>
-        
+        </a>
+
         {/* Star Rating */}
         <div className="flex items-center gap-1.5">
           <div className="flex items-center">
